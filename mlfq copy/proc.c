@@ -357,7 +357,7 @@ scheduler(void)
         continue;
 
 	    /* ******************** */
-      // mlfq의 레벨에 따라 스케줄링을 다르게 하도록 조건문 추가
+      /* * WRITE YOUR CODE    */
       /* ******************** */
 
       // Switch to chosen process.  It is the process's job

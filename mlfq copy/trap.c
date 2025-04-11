@@ -55,17 +55,8 @@ trap(struct trapframe *tf)
       release(&tickslock);
     }
     /* ******************** */
-    // 타이머 인터럽트를 구현
-    // 각 큐에 해당하는 틱을 모두 소진하면 큐를 변경하도록 구현한다
+    /* * WRITE YOUR CODE    */
     /* ******************** */
-
-    if(ticks == 10){ // tick이 10번이면 high에서 middle로 변경
-      myproc()->level = 1;
-    }
-    else if(ticks == 20){ // tick이 20번이면 middle에서 low로 변경
-      myproc()->level = 2;
-    }
-
     lapiceoi();
     break;
   case T_IRQ0 + IRQ_IDE:
