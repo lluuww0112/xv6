@@ -357,13 +357,7 @@ scheduler(void)
         continue;
 
 	    /* ******************** */
-      
-      // tic이 10번이면 초기화
-      if(p->leftTime == 10){
-        p->leftTime = 0;
-        continue;
-      }
-      
+      /* * WRITE YOUR CODE    */
       /* ******************** */
 
       // Switch to chosen process.  It is the process's job

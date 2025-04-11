@@ -55,10 +55,8 @@ trap(struct trapframe *tf)
       release(&tickslock);
     }
     /* ******************** */
-    // 타이머 인터럽트를 구현
-    // 1. RR 구현
+    /* * WRITE YOUR CODE    */
     /* ******************** */
-  
     lapiceoi();
     break;
   case T_IRQ0 + IRQ_IDE:
