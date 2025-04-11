@@ -6,56 +6,60 @@
 #define STOP_POINT 20
 #define PI 3.14
 const char *level[] = {"high", "mid", "low"};
+
 int main(int argc, char **argv)
 {
-        int pid =getpid();
+        int pid = getpid();
         float dummy = 0;
-        int i,j;
+        int i, j;
+
         printf(1, "=== TEST START ===\n");
 
         pid = fork();
         if(pid == 0)
         {
+            sleep(10); // P2가 먼저 실행되지 않도록 지연
             pid = fork();
             if(pid == 0)
             {
                     printf(1, "P3 ARRIVED\n");
-                    for(i=0; i<STOP_POINT; i++)
+                    for(i = 0; i < STOP_POINT; i++)
                     {
-                            for(j=0; j<STOP_POINT; j++)
-                                            dummy += PI*j;
+                            for(j = 0; j < STOP_POINT; j++)
+                                    dummy += PI * j;
                             int lev = getlevel();
                             printf(1, "P3 (%s), i = %d, dummy = %x\n", level[lev], i, dummy);
                     }
                     printf(1, "P3 RELEASED\n");
-                    wait();
                     exit();
             }
-            else{   
+            else
+            {   
                     printf(1, "P2 ARRIVED\n");
-                    for(i=0; i<STOP_POINT; i++)
+                    for(i = 0; i < STOP_POINT; i++)
                     {
-                            for(j=0; j<STOP_POINT; j++)
-                                            dummy += PI*j;
+                            for(j = 0; j < STOP_POINT; j++)
+                                    dummy += PI * j;
                             int lev = getlevel();
                             printf(1, "P2 (%s), i = %d, dummy = %x\n", level[lev], i, dummy);
                     }
                     printf(1, "P2 RELEASED\n");
-                    wait();
+                    wait(); // P2는 P3가 종료될 때까지 대기
+                    exit();
             }
-                
         }
         else
         {       
             printf(1, "P1 ARRIVED\n");
-            for (i=0; i< STOP_POINT; i++){    // p1: 20 ~ 30
-                    for (j=0; j<STOP_POINT; j++)
-                                    dummy += PI*j;
+            for(i = 0; i < STOP_POINT; i++)
+            {
+                    for(j = 0; j < STOP_POINT; j++)
+                            dummy += PI * j;
                     int lev = getlevel();
                     printf(1, "P1 (%s), i = %d, dummy = %x\n", level[lev], i, dummy);
             }
             printf(1, "P1 RELEASED\n");
-            wait();
+            wait(); // P1은 P2가 종료될 때까지 대기
             printf(1, "=== TEST DONE ===\n");
         }
         exit();
