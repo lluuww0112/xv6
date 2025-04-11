@@ -28,6 +28,7 @@ int main(int argc, char **argv)
                             printf(1, "P3 (%s), i = %d, dummy = %x\n", level[lev], i, dummy);
                     }
                     printf(1, "P3 RELEASED\n");
+                    wait();
                     exit();
             }
             else{   
